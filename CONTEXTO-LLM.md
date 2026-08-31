@@ -72,12 +72,14 @@ Atualizado em: 2026-08-31
 - `index.html`: conteúdo e estrutura dos quatro slides.
 - `src/style.css`: composição, fontes e animações.
 - `src/main.js`: navegação por teclado (←/→, PageUp/PageDown, Home/End); não há controles visíveis.
+- `vite.config.js`: usa `base: './'` para que os assets gerados sejam relativos e funcionem no GitHub Pages.
 
 ## Restrições de execução
 
 - O projeto fica em `/home/adriel/Documentos/repos/isla-ufam`; `referencias/` é a biblioteca de fontes e assets.
 - Validado com `npm run build` em 2026-08-30. Tela cheia e tipografia ainda dependem da conferência do usuário no ambiente de apresentação.
 - Dados do Centelha confirmados em 2026-08-31 na página oficial estadual `https://programacentelha.com.br/am/` e no Edital FAPEAM nº 016/2025. O site registra resultado final da Fase 2; o cronograma da terceira retificação prevê contratação entre 15 de agosto e 13 de setembro de 2026.
+- O projeto está publicado em `https://adrielvasques.github.io/isla-ufam/` via workflow `.github/workflows/deploy-pages.yml`; a configuração `base: './'` é obrigatória para não gerar referências a `/assets` fora do subdiretório do Pages.
 
 ## Próxima ação
 

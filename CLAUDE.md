@@ -15,7 +15,7 @@ npm run build    # gera dist/
 npm run preview  # serve dist/ para conferência
 ```
 
-`npm run build` é a única verificação automatizada disponível — rode-a depois de mexer em `index.html`, `src/` ou nos caminhos de assets, porque erros de caminho só aparecem na resolução do Vite. Não existe `vite.config.js`: o Vite usa os padrões, com a raiz do projeto como base.
+`npm run build` é a única verificação automatizada disponível — rode-a depois de mexer em `index.html`, `src/` ou nos caminhos de assets, porque erros de caminho só aparecem na resolução do Vite. `vite.config.js` configura `base: './'`, gerando caminhos relativos compatíveis com GitHub Pages e hospedagem em subdiretórios.
 
 ## Leia antes de editar
 
