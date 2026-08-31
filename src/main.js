@@ -4,6 +4,7 @@ import './style.css';
 const deck = document.querySelector('.deck');
 const slides = [...document.querySelectorAll('.slide')];
 const logo = document.querySelector('.logo');
+const slideCounter = document.querySelector('.slide-counter');
 
 const initialViewport = {
   width: window.innerWidth,
@@ -35,6 +36,19 @@ const syncFullscreenState = () => {
   deck.classList.toggle('is-fullscreen', active);
 };
 
+const syncSlideCounter = () => {
+  const activeSlide = slides[currentIndex];
+  const [red, green, blue] = window.getComputedStyle(activeSlide).backgroundColor.match(/\d+/g)?.map(Number) ?? [];
+  const luminance = red * 0.299 + green * 0.587 + blue * 0.114;
+  const current = String(currentIndex + 1).padStart(2, '0');
+  const total = String(slides.length).padStart(2, '0');
+  const isCover = activeSlide.matches('.cover-slide, .linklado-intro-slide, .isla-intro-slide, .vitoria-intro-slide');
+
+  slideCounter.textContent = `${current} / ${total}`;
+  slideCounter.hidden = isCover;
+  slideCounter.classList.toggle('slide-counter--light', luminance < 112);
+};
+
 const showSlide = (nextIndex) => {
   currentIndex = (nextIndex + slides.length) % slides.length;
 
@@ -44,6 +58,7 @@ const showSlide = (nextIndex) => {
     slide.setAttribute('aria-hidden', String(!active));
   });
 
+  syncSlideCounter();
 };
 
 document.addEventListener('keydown', (event) => {

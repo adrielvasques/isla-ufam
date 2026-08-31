@@ -71,7 +71,7 @@ Atualizado em: 2026-08-31
 - `referencias/assets/Linklado/app/`: capturas do aplicativo já recortadas, vindas de `referencias/telas_linklado/`. Das seis imagens originais só três são únicas — as outras são repetições da mesma tela.
 - `index.html`: conteúdo e estrutura dos quatro slides.
 - `src/style.css`: composição, fontes e animações.
-- `src/main.js`: navegação por teclado (←/→, PageUp/PageDown, Home/End); não há controles visíveis.
+- `src/main.js`: navegação por teclado (←/→, PageUp/PageDown, Home/End) e contador automático no formato `01 / 27`; o contador fica discreto no canto inferior direito, adapta a cor ao fundo e não aparece nas capas do ISLA, Linklado e Vitória-Régia.
 - `vite.config.js`: usa `base: './'` para que os assets gerados sejam relativos e funcionem no GitHub Pages.
 
 ## Restrições de execução

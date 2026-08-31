@@ -70,6 +70,26 @@ body {
   visibility: visible;
 }
 
+.slide-counter {
+  position: absolute;
+  z-index: 2;
+  right: 2.7%;
+  bottom: 2.8%;
+  margin: 0;
+  color: rgb(4 56 49 / 70%);
+  font-size: clamp(10px, 0.72vw, 14px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  text-shadow: 0 1px 5px rgb(255 255 255 / 58%);
+}
+
+.slide-counter--light {
+  color: rgb(255 255 255 / 76%);
+  text-shadow: 0 1px 5px rgb(0 0 0 / 34%);
+}
+
 .topline {
   position: absolute;
   top: 8.2%;
