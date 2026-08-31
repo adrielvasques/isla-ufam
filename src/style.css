@@ -1,0 +1,1746 @@
+@font-face {
+  font-family: 'Swiss 721';
+  src: url('../referencias/assets/Fonte/1. Principal - Swiss BT/SWISS721BLACKBT.TTF') format('truetype');
+  font-weight: 900;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Heron Sans';
+  src: url('../referencias/assets/Fonte/2. Corpo - Heron Sans/Regular - HeronSans.otf') format('opentype');
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Heron Sans';
+  src: url('../referencias/assets/Fonte/2. Corpo - Heron Sans/Bold - HeronSans .otf') format('opentype');
+  font-weight: 700;
+  font-display: block;
+}
+
+:root {
+  --mata: #043831;
+  --mata-clara: #387b5c;
+  --nevoa: #dedfda;
+  --folha: #b0bb9b;
+  --barro: #c56a19;
+  --linklado-violeta: #c200e8;
+  --linklado-escuro: #4d005a;
+  --linklado-lima: #b9ef25;
+  color: var(--nevoa);
+  background: #c7c9c1;
+  font-family: 'Heron Sans', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.deck {
+  position: relative;
+  width: min(100vw, 177.778vh);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease;
+}
+
+.slide.is-active {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+.topline {
+  position: absolute;
+  top: 8.2%;
+  left: 7.15%;
+  right: 15%;
+}
+
+.logo {
+  width: 31%;
+  height: auto;
+  transform: translateX(-12%);
+}
+
+.content {
+  position: absolute;
+  top: 42%;
+  left: 7.15%;
+  width: 62%;
+}
+
+h1 {
+  width: 130%;
+  max-width: none;
+  margin: 0;
+  color: var(--mata);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(48px, 6vw, 120px);
+  font-weight: 900;
+  line-height: 0.87;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+
+.subtitle {
+  max-width: 35em;
+  margin: 1em 0 0;
+  color: var(--mata-clara);
+  font-size: clamp(18px, 1.75vw, 34px);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.people {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1em;
+  max-width: 70em;
+  margin: 60pt 0 0;
+}
+
+.presenter {
+  position: relative;
+  border: 1px solid rgb(4 56 49 / 24%);
+  border-radius: 3px;
+  padding: 0.9em 1.2em 0.85em 1.45em;
+  background: rgb(255 255 255 / 82%);
+  box-shadow: inset 3px 0 0 var(--barro);
+}
+
+.presenter-name,
+.presenter-role {
+  display: block;
+}
+
+.presenter-name {
+  color: var(--mata);
+  font-size: clamp(20px, 1.7vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.presenter-role {
+  margin-top: 5pt;
+  color: var(--mata-clara);
+  font-size: clamp(13px, 1.1vw, 21px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.presenter-institution {
+  color: var(--mata);
+  font-size: clamp(12px, 0.9vw, 18px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+}
+
+.presenter-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-top: 0.33em;
+}
+
+.presenter-link {
+  display: grid;
+  flex: 0 0 auto;
+  width: clamp(26px, 1.7vw, 34px);
+  aspect-ratio: 1;
+  place-items: center;
+  color: #fff;
+  background-color: var(--mata);
+  border: 1px solid var(--mata);
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.presenter-link svg {
+  width: 74%;
+  height: 74%;
+  fill: currentColor;
+}
+
+.presenter-link:hover,
+.presenter-link:focus-visible {
+  color: #fff;
+  background-color: var(--barro);
+  border-color: var(--barro);
+}
+
+.presenter-link:focus-visible {
+  outline: 2px solid var(--barro);
+  outline-offset: 3px;
+}
+
+.edge-pattern {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 12%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.edge-pattern::before {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: var(--barro);
+  -webkit-mask: url('../referencias/assets/Elementos de apoio/Pattern - ISLA -03.png') center / cover no-repeat;
+  mask: url('../referencias/assets/Elementos de apoio/Pattern - ISLA -03.png') center / cover no-repeat;
+}
+
+/* Slides 09–11: imagem como protagonista, na gramática da apresentação-base. */
+.image-focus-slide {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 4.5% 8% 5.5%;
+  color: #fff;
+  background: var(--mata);
+}
+
+.writing-slide {
+  background: var(--barro);
+}
+
+.manuscript-slide {
+  background: var(--mata-clara);
+}
+
+.image-focus-title {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(30px, 2.7vw, 58px);
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  text-align: center;
+}
+
+.image-focus-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+  max-width: 76%;
+  max-height: 94%;
+  margin: 1.8% 0 0;
+}
+
+.image-focus-figure img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100% - 3.5em);
+  min-height: 0;
+  border: clamp(3px, 0.28vw, 6px) solid var(--barro);
+  border-radius: clamp(10px, 0.8vw, 16px);
+}
+
+.image-focus-figure figcaption {
+  margin-top: 1.15em;
+  color: rgb(255 255 255 / 90%);
+  font-size: clamp(13px, 0.95vw, 19px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.map-figure {
+  height: 80%;
+  max-width: 43%;
+}
+
+.writing-figure,
+.manuscript-figure {
+  width: 80%;
+  height: 76%;
+}
+
+.writing-slide .image-focus-figure img {
+  border-color: var(--mata);
+}
+
+/* Fecho institucional: mesma gramática do slide de abertura do Linklado
+   (título grande + símbolo grande), mas na identidade do próprio ISLA —
+   verde e laranja, sem o violeta do produto. Fica como última tela do deck. */
+.isla-intro-slide {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8%;
+  padding: 9% 12%;
+  color: #fff;
+  background: var(--mata);
+}
+
+.isla-intro-copy {
+  max-width: 44em;
+}
+
+.isla-intro-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(92px, 10vw, 205px);
+  font-weight: 900;
+  line-height: 0.84;
+  letter-spacing: -0.06em;
+}
+
+.isla-intro-name {
+  max-width: 15em;
+  margin: 0.75em 0 0;
+  color: var(--barro);
+  font-size: clamp(21px, 1.65vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.isla-intro-mission {
+  max-width: 26em;
+  margin: 1.05em 0 0;
+  color: rgb(255 255 255 / 85%);
+  font-size: clamp(18px, 1.5vw, 29px);
+  line-height: 1.3;
+}
+
+/* O selo já é uma peça circular fechada (aro com o nome, marca no centro);
+   não precisa de moldura ou fundo adicional como o símbolo do Linklado. */
+.isla-intro-seal {
+  display: block;
+  width: clamp(260px, 24vw, 460px);
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgb(0 0 0 / 30%));
+}
+
+/* Abertura Vitória-Régia: título e ilustração funcionam como uma só marca. */
+.vitoria-intro-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 0.38fr);
+  align-items: center;
+  padding: 8% 9%;
+  overflow: hidden;
+  color: var(--mata);
+  background: var(--barro);
+}
+
+.vitoria-intro-copy {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  padding-bottom: 2%;
+}
+
+.vitoria-intro-copy h2 {
+  margin: 0;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(88px, 9.8vw, 196px);
+  font-weight: 900;
+  line-height: 0.71;
+  letter-spacing: -0.085em;
+}
+
+.vitoria-intro-copy h2 span {
+  display: block;
+}
+
+.vitoria-intro-copy h2 span:last-child {
+  color: var(--nevoa);
+}
+
+.vitoria-intro-lede {
+  max-width: 16em;
+  margin: 1.45em 0 0;
+  color: var(--mata);
+  font-size: clamp(21px, 1.8vw, 36px);
+  font-weight: 700;
+  line-height: 1.16;
+}
+
+.vitoria-intro-symbol {
+  display: block;
+  position: absolute;
+  right: -10%;
+  bottom: -38%;
+  width: min(68%, clamp(580px, 58vw, 1160px));
+  height: auto;
+  filter: drop-shadow(-24px 20px 24px rgb(4 56 49 / 25%));
+}
+
+/* Linklado: desdobramento apresentado pelo ISLA. */
+.linklado-intro-slide {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8%;
+  padding: 9% 12%;
+  color: #fff;
+  background: var(--linklado-violeta);
+}
+
+.linklado-intro-copy {
+  max-width: 48em;
+}
+
+.linklado-intro-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(92px, 10vw, 205px);
+  font-weight: 900;
+  line-height: 0.84;
+  letter-spacing: -0.06em;
+}
+
+.linklado-theme {
+  max-width: 29em;
+  margin: 1.05em 0 0;
+  color: #fff;
+  font-size: clamp(25px, 2.05vw, 40px);
+  line-height: 1.18;
+}
+
+.linklado-authors {
+  margin: 1.25em 0 0;
+  color: var(--linklado-lima);
+  font-size: clamp(21px, 1.65vw, 32px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.linklado-stores {
+  display: flex;
+  gap: clamp(10px, 0.9vw, 18px);
+  margin-top: clamp(24px, 2vw, 40px);
+}
+
+.store-symbol {
+  display: grid;
+  width: clamp(44px, 3.2vw, 62px);
+  aspect-ratio: 1;
+  place-items: center;
+  color: #fff;
+  border: 2px solid var(--linklado-lima);
+  border-radius: 50%;
+  background: var(--linklado-escuro);
+}
+
+.store-symbol svg {
+  width: 55%;
+  height: 55%;
+  fill: currentColor;
+}
+
+/* Equilíbrio óptico entre as duas marcas: o triângulo do Play preenche mais
+   a caixa que a maçã, e a folha puxa o centro geométrico da maçã para cima. */
+.store-symbol--apple svg {
+  width: 52%;
+  height: 52%;
+  transform: translateY(-3%);
+}
+
+.store-symbol--play svg {
+  width: 47%;
+  height: 47%;
+  transform: translateX(3%);
+}
+
+.linklado-symbol {
+  display: block;
+  width: clamp(280px, 25vw, 480px);
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 0 7px var(--linklado-escuro), 0 18px 30px rgb(77 0 90 / 38%);
+}
+
+.linklado-letters-slide,
+.linklado-people-slide,
+.linklado-network-slide,
+.linklado-community-slide,
+.linklado-territory-slide {
+  grid-template-rows: 1fr;
+  place-items: center;
+  padding: 6%;
+  background: var(--linklado-violeta);
+}
+
+.linklado-letters-slide .image-focus-figure,
+.linklado-people-slide .image-focus-figure,
+.linklado-network-slide .image-focus-figure,
+.linklado-community-slide .image-focus-figure,
+.linklado-territory-slide .image-focus-figure {
+  margin: 0;
+}
+
+.linklado-letters-slide .image-focus-figure,
+.linklado-people-slide .image-focus-figure,
+.linklado-network-slide .image-focus-figure,
+.linklado-community-slide .image-focus-figure,
+.linklado-territory-slide .image-focus-figure {
+  /* Compensa a leitura óptica: as figuras pareciam baixas no palco. */
+  transform: translateY(-6.5%);
+}
+
+.linklado-letters-slide .image-focus-figure img,
+.linklado-people-slide .image-focus-figure img,
+.linklado-network-slide .image-focus-figure img,
+.linklado-community-slide .image-focus-figure img,
+.linklado-territory-slide .image-focus-figure img {
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  border: clamp(4px, 0.36vw, 7px) solid var(--linklado-escuro);
+  border-radius: clamp(18px, 1.25vw, 28px);
+  box-shadow: 0 12px 24px rgb(77 0 90 / 30%);
+}
+
+.linklado-letters-slide .image-focus-figure img {
+  /* A ilustração é um PNG com fundo transparente; a referência do PDF
+     mostra o desenho sobre um cartão branco, não direto no magenta. */
+  background: #fff;
+}
+
+.linklado-illustration-figure {
+  width: 58%;
+  height: 74%;
+}
+
+.linklado-photo-figure {
+  width: 74%;
+  height: 78%;
+}
+
+.linklado-map-figure {
+  width: 66%;
+  height: 82%;
+}
+
+/* Tela do app: uma só, com as três capturas lado a lado. O magenta da
+   interface do Linklado brigava com o magenta do deck, então o fundo é o
+   laranja da paleta ISLA. */
+.app-showcase-slide {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 3.2%;
+  padding: 5.5% 7% 3.6%;
+  color: #fff;
+  background: var(--barro);
+}
+
+.app-showcase-head {
+  text-align: center;
+}
+
+.app-showcase-head h2 {
+  margin: 0;
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(38px, 4.5vw, 92px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.app-showcase-lede {
+  max-width: 26em;
+  margin: 0.7em auto 0;
+  color: rgb(255 255 255 / 92%);
+  font-size: clamp(14px, 1.3vw, 26px);
+  line-height: 1.3;
+}
+
+.app-showcase-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(20px, 2.6vw, 54px);
+  min-height: 0;
+}
+
+.app-showcase-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+}
+
+.app-showcase-item img {
+  display: block;
+  width: auto;
+  /* Reserva a faixa das legendas abaixo de cada celular. */
+  height: calc(100% - 4.4em);
+  min-height: 0;
+  /* Moldura escura para o celular se destacar do laranja. */
+  border: clamp(5px, 0.5vw, 10px) solid var(--mata);
+  border-radius: clamp(16px, 1.5vw, 32px);
+  box-shadow: 0 18px 34px rgb(4 56 49 / 30%);
+}
+
+.app-showcase-item figcaption {
+  margin-top: 0.95em;
+  text-align: center;
+}
+
+.app-showcase-item figcaption strong {
+  display: block;
+  color: var(--mata);
+  font-size: clamp(12px, 1.05vw, 21px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+.app-showcase-item figcaption span {
+  display: block;
+  margin-top: 0.35em;
+  color: rgb(255 255 255 / 88%);
+  font-size: clamp(11px, 0.92vw, 18px);
+  line-height: 1.25;
+}
+
+/* Páginas 24 a 26: no PDF a colagem era construída em três telas, uma foto
+   por clique. Aqui vira uma tela só e a construção é emulada pelos atrasos
+   de entrada, na ordem original das fotos. */
+.collage-slide {
+  padding: 0;
+  background: var(--linklado-violeta);
+}
+
+.collage-item {
+  position: absolute;
+  margin: 0;
+}
+
+.collage-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: clamp(4px, 0.36vw, 7px) solid var(--linklado-escuro);
+  border-radius: clamp(14px, 1.1vw, 24px);
+  box-shadow: 0 14px 28px rgb(77 0 90 / 32%);
+}
+
+/* Posições medidas na página 26 do PDF. */
+.collage-item--a {
+  z-index: 1;
+  top: 6%;
+  left: 5.4%;
+  width: 37.9%;
+}
+
+.collage-item--c {
+  z-index: 2;
+  top: 7.3%;
+  left: 48.7%;
+  width: 46.5%;
+}
+
+.collage-item--b {
+  z-index: 3;
+  top: 44.9%;
+  left: 28.6%;
+  width: 41.4%;
+}
+
+/* Página 27: três capas de livro, posições medidas na própria página. */
+.collage-item--p27-1 {
+  top: 18.9%;
+  left: 3.8%;
+  width: 35.2%;
+}
+
+.collage-item--p27-2 {
+  top: 18.9%;
+  left: 41.3%;
+  width: 27%;
+}
+
+.collage-item--p27-3 {
+  top: 18.9%;
+  left: 70.5%;
+  width: 25.6%;
+}
+
+/* Página 30: dupla do Jabuti, posições medidas na própria página. */
+.collage-item--p30-1 {
+  top: 16.2%;
+  left: 5%;
+  width: 50.3%;
+}
+
+.collage-item--p30-2 {
+  top: 16.5%;
+  left: 58.4%;
+  width: 36.7%;
+}
+
+/* Páginas 28 e 29 reunidas: a caixa de livros ocupa a esquerda inteira em
+   altura cheia e as duas fotos de campo dividem a direita. Como nenhuma
+   imagem é cortada, a composição é mais estreita que o palco 16:9 e sobra
+   magenta nas laterais; isso é o limite geométrico destas proporções. */
+.split-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.6%;
+  padding: 2.8% 4%;
+  background: var(--linklado-violeta);
+}
+
+.split-main {
+  align-self: stretch;
+  min-height: 0;
+  margin: 0;
+}
+
+.split-main img {
+  display: block;
+  width: auto;
+  height: 100%;
+  min-height: 0;
+  border: clamp(4px, 0.36vw, 7px) solid var(--linklado-escuro);
+  border-radius: clamp(14px, 1.1vw, 24px);
+  box-shadow: 0 14px 28px rgb(77 0 90 / 32%);
+}
+
+/* A largura sai da própria proporção das duas fotos empilhadas mais o vão:
+   1/1,23 + 1/1,33 + 0,06 ≈ 1,66 de altura para 1 de largura. */
+.split-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  gap: 6%;
+  aspect-ratio: 0.6;
+  min-height: 0;
+}
+
+.split-side {
+  min-height: 0;
+  margin: 0;
+}
+
+.split-side img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: clamp(4px, 0.36vw, 7px) solid var(--linklado-escuro);
+  border-radius: clamp(14px, 1.1vw, 24px);
+  box-shadow: 0 14px 28px rgb(77 0 90 / 32%);
+}
+
+/* Telas de projeto: o texto ocupa a coluna de leitura e a demonstração
+   recebe escala de objeto principal, sem parecer uma imagem emoldurada. */
+.project-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 8%;
+  padding: 6% 8%;
+  color: #fff;
+  background: var(--mata);
+}
+
+/* A demonstração do Woolaroo é estreita por natureza. A grade ocupa o centro
+   do palco para não deixar uma massa de conteúdo encostada à esquerda. */
+.project-slide--woolaroo {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.64fr);
+  justify-content: center;
+  gap: 10%;
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+.project-copy {
+  max-width: 35em;
+}
+
+.project-kicker {
+  margin: 0;
+  color: var(--barro);
+  font-size: clamp(14px, 1.05vw, 21px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.project-copy h2 {
+  margin: 0.5em 0 0;
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(58px, 6.3vw, 128px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+}
+
+.project-lede {
+  max-width: 28em;
+  margin: 1em 0 0;
+  color: rgb(255 255 255 / 82%);
+  font-size: clamp(17px, 1.35vw, 27px);
+  line-height: 1.36;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  max-width: 100%;
+  margin-top: 1.7em;
+  padding-bottom: 0.2em;
+  color: var(--barro);
+  border-bottom: 2px solid currentColor;
+  font-size: clamp(14px, 1.05vw, 21px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 160ms ease;
+}
+
+.project-link span {
+  transition: transform 160ms ease;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  color: var(--linklado-lima);
+}
+
+.project-link:hover span,
+.project-link:focus-visible span {
+  transform: translateX(3px);
+}
+
+.project-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+}
+
+.project-phone {
+  position: relative;
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  /* O arquivo tem faixas pretas laterais de 24 px. Esta proporção é a área
+     útil de 672 × 1280; com object-fit: cover, elas ficam fora do aparelho. */
+  aspect-ratio: 21 / 40;
+  min-height: 0;
+  padding: clamp(4px, 0.38vw, 8px);
+  overflow: hidden;
+  border: clamp(3px, 0.26vw, 5px) solid var(--barro);
+  border-radius: clamp(26px, 2vw, 40px);
+  background: #171717;
+  box-shadow: 0 20px 38px rgb(0 0 0 / 36%);
+}
+
+.project-phone video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: clamp(20px, 1.55vw, 31px);
+  background: #171717;
+  object-fit: cover;
+}
+
+.project-slide--portal {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  justify-items: stretch;
+  gap: 2.5%;
+  padding: 3.8% 6.5% 3%;
+}
+
+.project-portal-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2vw, 40px);
+}
+
+.project-portal-head h2 {
+  margin: 0;
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(42px, 4.3vw, 86px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.project-platform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.7vw, 14px);
+  color: rgb(255 255 255 / 55%);
+}
+
+.project-platform span {
+  font-size: clamp(10px, 0.72vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.project-platform img {
+  display: block;
+  width: clamp(52px, 4vw, 80px);
+  height: auto;
+}
+
+.project-frame {
+  width: min(92%, 84em);
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  place-self: center;
+}
+
+.project-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: clamp(3px, 0.26vw, 5px) solid var(--barro);
+  border-radius: clamp(12px, 1vw, 20px);
+  background: #fff;
+  box-shadow: 0 16px 32px rgb(0 0 0 / 28%);
+}
+
+.centelha-slide {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: center;
+  gap: 4%;
+  padding: 5% 7% 4%;
+  color: var(--mata);
+  background: var(--nevoa);
+}
+
+.centelha-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+  align-items: center;
+  gap: 7%;
+  padding-bottom: 3%;
+  border-bottom: 2px solid var(--barro);
+}
+
+.centelha-brand {
+  width: 100%;
+}
+
+.centelha-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.centelha-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.centelha-intro h2 {
+  max-width: 13ch;
+  margin: 0;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(30px, 3vw, 61px);
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+.centelha-intro p {
+  max-width: 38em;
+  margin: 0.8em 0 0;
+  color: rgb(4 56 49 / 82%);
+  font-size: clamp(13px, 1vw, 20px);
+  line-height: 1.35;
+}
+
+.centelha-numbers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  max-width: 92%;
+  margin: 0;
+  padding: 3.5% 0;
+  color: #fff;
+  background: var(--mata);
+}
+
+.centelha-numbers > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 8.5em;
+  padding: 0.6em 6%;
+  text-align: center;
+  border-left: 1px solid rgb(255 255 255 / 25%);
+}
+
+.centelha-numbers > div:first-child {
+  border-left: 0;
+}
+
+.centelha-numbers dt {
+  color: var(--nevoa);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(38px, 4.1vw, 84px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+
+.centelha-numbers dd {
+  margin: 0.55em 0 0;
+  color: var(--folha);
+  font-size: clamp(13px, 1vw, 20px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.centelha-impact {
+  max-width: 52em;
+  margin: 0 auto;
+  padding: 2.5% 4%;
+  text-align: center;
+  border-top: 2px solid var(--barro);
+  color: var(--mata);
+}
+
+.centelha-impact-label {
+  margin: 0;
+  color: var(--barro);
+  font-size: clamp(12px, 0.9vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.centelha-impact-text {
+  max-width: 36em;
+  margin: 0.8em auto 0;
+  color: var(--mata);
+  font-size: clamp(17px, 1.35vw, 27px);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+/* Quatro telas finais: uma sequência editorial, não quatro templates. */
+.edital-slide {
+  display: grid;
+  min-height: 0;
+  color: var(--nevoa);
+  background: var(--mata);
+}
+
+.edital-kicker {
+  margin: 0;
+  color: var(--barro);
+  font-size: clamp(13px, 1vw, 20px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* 19: o intervalo é protagonista; as datas apenas sustentam o número. */
+.edital-slide--duration {
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 5%;
+  padding: 7% 7% 5.5%;
+}
+
+.edital-duration-main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: 8%;
+  min-height: 0;
+}
+
+.edital-duration-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(46px, 4.8vw, 96px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+}
+
+.edital-duration-copy p {
+  max-width: 28em;
+  margin: 1em 0 0;
+  color: rgb(255 255 255 / 72%);
+  font-size: clamp(15px, 1.15vw, 23px);
+  line-height: 1.35;
+}
+
+.edital-duration-number {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  justify-self: center;
+  color: var(--barro);
+}
+
+.edital-duration-number strong {
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(120px, 15vw, 295px);
+  font-weight: 900;
+  line-height: 0.68;
+  letter-spacing: -0.08em;
+}
+
+.edital-duration-number span {
+  margin: 0 0 0.05em 0.18em;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(44px, 4.8vw, 96px);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+}
+
+.edital-duration-number small {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 0.7em;
+  color: var(--folha);
+  font-size: clamp(18px, 1.6vw, 32px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.edital-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.edital-timeline::before {
+  position: absolute;
+  top: 0;
+  right: 12.5%;
+  left: 12.5%;
+  height: 2px;
+  content: '';
+  background: rgb(176 187 155 / 55%);
+}
+
+.edital-timeline li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+  padding: 1.5em 4% 0;
+  text-align: center;
+}
+
+.edital-timeline li::before {
+  position: absolute;
+  top: -0.38em;
+  left: 50%;
+  width: 0.75em;
+  aspect-ratio: 1;
+  content: '';
+  border-radius: 50%;
+  background: var(--barro);
+  transform: translateX(-50%);
+}
+
+.edital-timeline time {
+  color: #fff;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(18px, 1.55vw, 31px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.edital-timeline span {
+  color: var(--folha);
+  font-size: clamp(12px, 0.92vw, 18px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* 20: a ordem real da seleção estrutura a tela. */
+.edital-slide--phases {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 2.5%;
+  padding: 4.5% 6%;
+  color: var(--mata);
+  background: var(--barro);
+}
+
+.edital-head h2 {
+  max-width: none;
+  margin: 0;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(34px, 3.4vw, 68px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.edital-slide--phases .edital-kicker {
+  color: var(--mata);
+}
+
+.edital-phases {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5%;
+  min-height: 0;
+}
+
+.edital-phase {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 0;
+  padding: 3.5% 4.5%;
+  color: var(--mata);
+  background: var(--nevoa);
+}
+
+.edital-phase-heading {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  padding-bottom: 3%;
+  border-bottom: 2px solid var(--barro);
+}
+
+.edital-phase-heading > span {
+  color: var(--barro);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(40px, 3.7vw, 74px);
+  font-weight: 900;
+  line-height: 0.75;
+  letter-spacing: -0.07em;
+}
+
+.edital-phase h3 {
+  margin: 0;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(20px, 1.7vw, 34px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.edital-phase-heading p {
+  margin: 0.45em 0 0;
+  color: rgb(4 56 49 / 68%);
+  font-size: clamp(11px, 0.82vw, 16px);
+  font-weight: 700;
+}
+
+.edital-phase ul {
+  display: grid;
+  grid-auto-rows: 1fr;
+  align-content: stretch;
+  margin: 0;
+  padding: 3% 0;
+  list-style: none;
+}
+
+.edital-phase li {
+  display: grid;
+  grid-template-columns: 2.5em 1fr;
+  align-items: center;
+  gap: 0.7em;
+  border-bottom: 1px solid rgb(4 56 49 / 12%);
+  font-size: clamp(14px, 1.05vw, 21px);
+  line-height: 1.2;
+}
+
+.edital-phase li:last-child {
+  border-bottom: 0;
+}
+
+.edital-phase li strong {
+  color: var(--barro);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: 1.15em;
+  font-weight: 900;
+}
+
+.edital-phase footer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 0.35em 0.75em;
+  padding-top: 2.8%;
+  border-top: 1px solid rgb(4 56 49 / 25%);
+}
+
+.edital-formula-label {
+  color: rgb(4 56 49 / 58%);
+  font-size: clamp(10px, 0.68vw, 13px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.edital-formula {
+  margin: 0;
+  color: var(--mata);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(15px, 1.15vw, 23px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.edital-weight {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--barro);
+  font-size: clamp(11px, 0.82vw, 16px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.edital-final-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4%;
+  padding: 1.5% 2.5%;
+  color: #fff;
+  background: var(--mata);
+}
+
+.edital-final-score p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  margin: 0;
+}
+
+.edital-final-score span {
+  color: var(--folha);
+  font-size: clamp(11px, 0.82vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.edital-final-score strong {
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(20px, 1.75vw, 35px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.edital-final-score small {
+  max-width: 20em;
+  color: rgb(255 255 255 / 70%);
+  font-size: clamp(11px, 0.8vw, 16px);
+  line-height: 1.2;
+  text-align: right;
+}
+
+/* 21: o vídeo é a evidência e ocupa todo o palco útil. */
+.edital-slide--video {
+  padding: 3.5% 4.5%;
+  background: var(--mata);
+}
+
+.edital-video {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+}
+
+.edital-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: clamp(3px, 0.28vw, 6px) solid var(--barro);
+  border-radius: clamp(8px, 0.7vw, 14px);
+  background: #000;
+  object-fit: cover;
+}
+
+.edital-video figcaption {
+  position: absolute;
+  top: 4%;
+  left: 3%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  padding: 0.65em 1em 0.7em;
+  color: #fff;
+  background: rgb(4 56 49 / 90%);
+}
+
+.edital-video figcaption span {
+  color: var(--barro);
+  font-size: clamp(10px, 0.75vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.edital-video figcaption strong {
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(20px, 1.7vw, 34px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* 22: a pergunta abre o próximo bloco com escala, não com decoração. */
+.edital-slide--hook {
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 0.22fr);
+  align-items: center;
+  gap: 7%;
+  padding: 9% 10%;
+  overflow: hidden;
+  background: var(--nevoa);
+}
+
+.edital-hook-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.edital-hook-copy > p {
+  margin: 0 0 1.3em;
+  color: var(--barro);
+  font-size: clamp(13px, 1vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.edital-slide--hook h2 {
+  max-width: 12ch;
+  margin: 0;
+  color: var(--mata);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(54px, 6.4vw, 128px);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.065em;
+}
+
+.edital-slide--hook h2 span {
+  color: var(--barro);
+}
+
+.edital-hook-mark {
+  justify-self: end;
+  color: var(--barro);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(190px, 25vw, 500px);
+  font-weight: 900;
+  line-height: 0.7;
+  opacity: 0.18;
+}
+
+/* Fecho: os contatos retomam os dois universos visuais da apresentação
+   antes do agradecimento e da abertura para perguntas. */
+.closing-contacts-slide {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: var(--mata);
+}
+
+.closing-contact {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  gap: 6%;
+  min-width: 0;
+  padding: 10% 9% 8%;
+}
+
+.closing-contact--linklado {
+  color: #fff;
+  background: var(--linklado-violeta);
+}
+
+.closing-contact--isla {
+  overflow: hidden;
+  color: #fff;
+  background: var(--mata);
+}
+
+.closing-linklado-symbol {
+  align-self: center;
+  width: min(53%, clamp(240px, 22vw, 440px));
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 16px 30px rgb(77 0 90 / 38%);
+}
+
+.closing-isla-logo {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  width: min(78%, clamp(300px, 32vw, 640px));
+  height: auto;
+  filter: drop-shadow(0 8px 14px rgb(0 0 0 / 18%));
+}
+
+.closing-contact-links {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 0.35em;
+  width: 100%;
+  text-align: center;
+}
+
+.closing-contact-links a {
+  color: currentColor;
+  font-size: clamp(30px, 3.55vw, 71px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-decoration: none;
+}
+
+.closing-contact-links a:hover,
+.closing-contact-links a:focus-visible {
+  color: var(--linklado-lima);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.closing-thanks-slide {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 5% 7%;
+  background: var(--mata);
+}
+
+.closing-thanks-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  row-gap: clamp(7px, 0.75vw, 15px);
+  color: var(--barro);
+  text-align: center;
+}
+
+.closing-thanks-copy p {
+  margin: 0;
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(40px, 6.15vw, 123px);
+  font-weight: 900;
+  line-height: 0.84;
+  letter-spacing: -0.06em;
+}
+
+.closing-thanks-copy .closing-thanks-main {
+  color: var(--folha);
+  font-size: clamp(72px, 10.5vw, 210px);
+  line-height: 0.76;
+}
+
+.qa-slide {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 8%;
+  background: var(--mata);
+}
+
+.qa-slide h2 {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.2vw, 44px);
+  margin: 0;
+  color: var(--nevoa);
+  font-family: 'Swiss 721', Impact, sans-serif;
+  font-size: clamp(180px, 20vw, 400px);
+  font-weight: 900;
+  line-height: 0.75;
+  letter-spacing: -0.055em;
+}
+
+.qa-slide .qa-letter,
+.qa-slide .qa-ampersand {
+  display: block;
+}
+
+.qa-slide .qa-ampersand {
+  color: var(--barro);
+  font-size: 0.8em;
+  transform: translateY(0.04em);
+}
+
+[data-animate] {
+  opacity: 0;
+  animation: fade-in 720ms ease-out both paused;
+}
+
+.cover-slide .topline[data-animate] { animation-delay: 80ms; }
+.cover-slide h1[data-animate] { animation-delay: 220ms; }
+.cover-slide .subtitle[data-animate] { animation-delay: 390ms; }
+.cover-slide .presenter:nth-child(1)[data-animate] { animation-delay: 560ms; }
+.cover-slide .presenter:nth-child(2)[data-animate] { animation-delay: 680ms; }
+
+.image-focus-title[data-animate] { animation-delay: 120ms; }
+.image-focus-figure[data-animate] { animation-delay: 260ms; }
+.isla-intro-copy[data-animate] { animation-delay: 120ms; }
+.isla-intro-seal[data-animate] { animation-delay: 280ms; }
+.vitoria-intro-copy[data-animate] { animation-delay: 120ms; }
+.vitoria-intro-symbol[data-animate] { animation-delay: 280ms; }
+
+.project-copy[data-animate] { animation-delay: 120ms; }
+.project-portal-head[data-animate] { animation-delay: 120ms; }
+.project-video[data-animate] { animation-delay: 280ms; }
+.project-frame[data-animate] { animation-delay: 280ms; }
+.project-platform[data-animate] { animation-delay: 380ms; }
+.centelha-head[data-animate] { animation-delay: 100ms; }
+.centelha-numbers[data-animate] { animation-delay: 360ms; }
+.centelha-impact[data-animate] { animation-delay: 500ms; }
+.edital-head[data-animate] { animation-delay: 120ms; }
+.edital-duration-copy[data-animate] { animation-delay: 120ms; }
+.edital-duration-number[data-animate] { animation-delay: 260ms; }
+.edital-timeline[data-animate] { animation-delay: 420ms; }
+.edital-phase:nth-child(1)[data-animate] { animation-delay: 260ms; }
+.edital-phase:nth-child(2)[data-animate] { animation-delay: 420ms; }
+.edital-final-score[data-animate] { animation-delay: 560ms; }
+.edital-video[data-animate] { animation-delay: 280ms; }
+.edital-hook-copy[data-animate] { animation-delay: 200ms; }
+.closing-contact:nth-child(1)[data-animate] { animation-delay: 120ms; }
+.closing-contact:nth-child(2)[data-animate] { animation-delay: 280ms; }
+.closing-thanks-copy[data-animate] { animation-delay: 180ms; }
+.qa-slide h2[data-animate] { animation-delay: 160ms; }
+.linklado-intro-copy[data-animate] { animation-delay: 120ms; }
+.linklado-symbol[data-animate] { animation-delay: 280ms; }
+.linklado-stores[data-animate] { animation-delay: 360ms; }
+
+.app-showcase-head[data-animate] { animation-delay: 120ms; }
+.app-showcase-row[data-animate] { animation-delay: 280ms; }
+
+/* Emula os três cliques das páginas 24, 25 e 26. */
+.collage-item--a[data-animate] { animation-delay: 150ms; }
+.collage-item--b[data-animate] { animation-delay: 950ms; }
+.collage-item--c[data-animate] { animation-delay: 1750ms; }
+
+/* Página 27: as três capas entram em sequência, mesmo ritmo da colagem acima. */
+.collage-item--p27-1[data-animate] { animation-delay: 150ms; }
+.collage-item--p27-2[data-animate] { animation-delay: 950ms; }
+.collage-item--p27-3[data-animate] { animation-delay: 1750ms; }
+
+/* Página 30: a mesma lógica de entrada em sequência, só que com duas fotos. */
+.collage-item--p30-1[data-animate] { animation-delay: 150ms; }
+.collage-item--p30-2[data-animate] { animation-delay: 950ms; }
+
+/* Páginas 28+29: a caixa de livros primeiro, depois as duas de campo. */
+.split-main[data-animate] { animation-delay: 150ms; }
+.split-stack .split-side:nth-child(1)[data-animate] { animation-delay: 950ms; }
+.split-stack .split-side:nth-child(2)[data-animate] { animation-delay: 1750ms; }
+
+.deck.is-ready .slide:not(.is-active) [data-animate] {
+  animation: none;
+  opacity: 0;
+}
+
+.deck.is-ready:not(.is-fullscreen) .slide.is-active [data-animate] {
+  animation: none;
+  opacity: 1;
+}
+
+.deck.is-ready.is-fullscreen .slide.is-active [data-animate] {
+  animation-play-state: running;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 760px) {
+  .people { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  [data-animate] {
+    animation: none;
+    transition: none;
+    opacity: 1;
+  }
+}
+
+@media (max-aspect-ratio: 16 / 9) {
+  .deck { width: 100vw; }
+}
